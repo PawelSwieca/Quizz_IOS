@@ -6,10 +6,10 @@
     <title>Quiz - iOS Programming</title>
     <style>
         :root {
-            --primary: #007AFF; /* iOS Blue */
+            --primary: #007AFF;
             --primary-hover: #0056b3;
-            --success: #34C759; /* iOS Green */
-            --danger: #FF3B30;  /* iOS Red */
+            --success: #34C759;
+            --danger: #FF3B30;
             --bg: #F2F2F7;
             --card-bg: #FFFFFF;
             --text: #1C1C1E;
@@ -81,18 +81,6 @@
         }
         .question-box {
             margin-bottom: 30px;
-        }
-        .question-type-badge {
-            display: inline-block;
-            background: #E5E5EA;
-            color: #8E8E93;
-            font-size: 0.75em;
-            text-transform: uppercase;
-            font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            letter-spacing: 0.5px;
         }
         .question {
             font-size: 1.3em;
@@ -256,10 +244,8 @@
         <div id="start-screen">
             <h1>Quiz: iOS Programming</h1>
             <p class="intro-text">
-                Baza pytań została <strong>zaktualizowana i poprawiona</strong> (m.in. naprawiono niewyświetlające się pętle <code>ForEach</code> i klamry kodu). <br><br>
+                Baza pytań zaktualizowana i poprawiona. Wszystkie pytania traktowane są jako pytania wielokrotnego wyboru, a opcje zostały uzupełnione do pełnych 4 wariantów.<br><br>
                 Z naszej puli <strong><span id="total-q-count"></span> pytań</strong> aplikacja losuje <strong>15 zagadnień</strong> na każdą sesję. 
-                <br><br>
-                <strong>Uwaga: Pytania mogą być wielokrotnego wyboru!</strong> Zaznacz wszystkie poprawne odpowiedzi i kliknij "Sprawdź".
             </p>
             <button class="btn" id="start-btn">Rozpocznij Quiz</button>
         </div>
@@ -273,7 +259,6 @@
             </div>
             
             <div class="question-box">
-                <div class="question-type-badge" id="q-type-badge">Wielokrotny wybór</div>
                 <div class="question" id="question-text"></div>
             </div>
             
@@ -298,49 +283,49 @@
             {"question": "Aby zmodyfikować dane typu całkowitego (lub dowolnego innego) i przekazać je do widoku nadrzędnego, należy zastosować w widoku podrzędnym:", "options": ["@Binding var zmienna", "@Binding var zmienna = \"\"", "@State var zmienna", "@State var zmienna = \"\""], "correct": [0], "explanation": "Weryfikacja: W4/W9: Do modyfikacji danych i przekazywania ich między widokami, gdy widok podrzędny ma zmieniać stan widoku nadrzędnego, używamy @Binding. Właściwość @Binding nie jest inicjalizowana wartością domyślną w widoku podrzędnym)."}, 
             {"question": "Wybierz poprawne stwierdzenia dotyczące struktur (SwiftUI):", "options": ["Struktury mogą posiadać inicjalizację danych", "Struktury mogą posiadać obliczeniowe zmienne", "Struktury mogą być dziedziczone", "Struktury zawierają zmienne lub stałe"], "correct": [0, 1, 3], "explanation": "Weryfikacja: W1: Widoki w SwiftUI są deklarowane jako typy wartości (struktury). Struktury obsługują metody, zmienne, inicjalizatory)."}, 
             {"question": "Wskaż poprawne stwierdzenie dotyczące testowania w środowisku Xcode:", "options": ["Klasa do testowania jest podklasą klasy XCTest", "Należy wskazać, co będzie testowane, poprzez dodanie `@testable import` przed nazwą klasy", "Należy wskazać, co będzie testowane, poprzez dodanie `@testable` przed nazwą klasy", "Należy wskazać, co będzie testowane, poprzez dodanie `@testable import` przed nazwą modułu"], "correct": [3], "explanation": ""}, 
-            {"question": "Wskaż poprawne stwierdzenia dotyczące gestów w SwiftUI:", "options": ["Łączenie gestów może zostać zrealizowane za pomocą modyfikatora `highPriorityGesture()`", "Łączenie gestów może być wykonane w tworzonej zmiennej", "Gesty, które zostaną przypisane do elementu graficznego oraz `VStack`, są zawsze rozpoznawalne"], "correct": [0, 1], "explanation": "Weryfikacja: W12 (Obsługa gestów): Swift UI pozwala na łączenie gestów poprzez simultaneousGesture, sequenced(before:), a także highPriorityGesture. Gest można też zdefiniować w zmiennej)."}, 
+            {"question": "Wskaż poprawne stwierdzenia dotyczące gestów w SwiftUI:", "options": ["Łączenie gestów może zostać zrealizowane za pomocą modyfikatora `highPriorityGesture()`", "Łączenie gestów może być wykonane w tworzonej zmiennej", "Gesty, które zostaną przypisane do elementu graficznego oraz `VStack`, są zawsze rozpoznawalne", "Gesty w SwiftUI nie obsługują modyfikatorów określających kolejność ich wywołania"], "correct": [0, 1], "explanation": "Weryfikacja: W12 (Obsługa gestów): Swift UI pozwala na łączenie gestów poprzez simultaneousGesture, sequenced(before:), a także highPriorityGesture. Gest można też zdefiniować w zmiennej)."}, 
             {"question": "W widoku podrzędnym, w celu wyboru koloru i przekazania go do widoku nadrzędnego, można użyć:", "options": ["`@Binding var color: Color; var body: some View { ColorPicker(\"\", selection: color) }`", "`@Binding var color: Color; var body: some View { ColorPicker(\"\", selection: $color) }`", "`@Binding var color: Color = .white; var body: some View { ColorPicker(\"\", selection: $color) }`", "`@State var color: Color = .red; var body: some View { ColorPicker(\"\", selection: $color) }`"], "correct": [1], "explanation": ""}, 
             {"question": "Wskaż poprawne implementacje pola do wpisania hasła, gdzie zamiast znaków pojawiają się kropki:", "options": ["`@State var passwd: String = \"\"; var body: some View { SecureField(text: $passwd, prompt: Text(\"Podaj hasło\")){} }`", "`@State var passwd: String = \"\"; var body: some View { SecureText(\"Hasło\", text: $passwd) }`", "`@State var passwd: String = \"\"; var body: some View { SecureField(text: $passwd, prompt: Text(\"Podaj hasło\")) }`", "`@State var passwd: String = \"\"; var body: some View { SecureField(\"Hasło\", text: $passwd) }`"], "correct": [0, 2], "explanation": "Weryfikacja: W6 (Widok i kontroler): Hasło wpisuje się używając SecureField. Konstruktor może przyjmować prompt lub label)."}, 
             {"question": "Wskaż poprawne implementacje listy z tablicy `flowers`:", "options": ["`List(flowers, id: \\.self){ f in Text(f) }`", "`List(){ ForEach(flowers.indices) { f in Text(flowers[f]) } }`", "`List(){ ForEach(flowers, id: \\.self) { f in Text(f) } }`", "`List(flowers, id: \\.self){ _ in Text(flower) }`"], "correct": [0, 2], "explanation": "Weryfikacja: W10 (Listy w SwiftUI): Listy dynamiczne generuje się używając identyfikatora (np. `id: \\.self`) lub iterując po samej kolekcji ForEach ze wskazaniem id)."}, 
             {"question": "Wskaż poprawne stwierdzenia dotyczące obserwowalnych obiektów:", "options": ["Do właściwości `@ObservedObject` nie jest przypisywana wartość, ale do `@EnvironmentObject` jest zawsze przypisywana wartość", "Zgodność z protokołem `ObservableObject` umożliwia używanie instancji tej klasy wewnątrz widoków, dzięki czemu w przypadku wystąpienia ważnych zmian widok zostanie ponownie załadowany", "Inicjalizacja obiektu obserwowalnego wykonywana jest za pomocą `@StateObject`", "`@EnvironmentObject` oraz `@ObservedObject` zapewniają współdzielenie obiektów pomiędzy widokami"], "correct": [1, 2, 3], "explanation": "Weryfikacja: W9 (Przekazywanie danych): ObservableObject służy do śledzenia obiektu referencyjnego. @EnvironmentObject przekazuje go w dół hierarchii)."}, 
-            {"question": "Wskaż poprawne instrukcje do wyświetlenia elementów tablicy obiektów struktury `Person` bez stanu `@State`:", "options": ["`ForEach(0..<persons.count) { i in NavigationLink(destination: PersonView(person: $persons[i])) { Text(persons[i].firstname) } }` (błędne użycie $persons)", "`ForEach(persons.indices) { i in NavigationLink(destination: PersonView(person: $persons[i])) { Text(persons[i].firstname) } }` (błędne użycie $persons)", "`ForEach(0..<persons.count) { i in NavigationLink(destination: PersonView(person: persons[i])) { Text(persons[i].firstname) } }`", "`ForEach(persons.indices) { i in NavigationLink(destination: PersonView(person: persons[i])) { Text(persons[i].firstname) } }`"], "correct": [2, 3], "explanation": ""}, 
-            {"question": "Wybierz poprawne stwierdzenie dotyczące rozpoznawania gestów (UIKit):", "options": ["rozpoznawanie gestów ciągle wywołuje metodę akcji dokładnie raz po rozpoznaniu gestu", "ciągłe rozpoznawanie gestów polega na wielokrotnym wywołaniu metody akcji", "jeśli rozpoznawanie gestów rozpozna swój gest, pozostałe dotknięcia widoku zostaną anulowane"], "correct": [1], "explanation": ""}, 
-            {"question": "Core Data:", "options": ["jest lekką bazą danych", "zapewnia przechowywanie danych i zarządzanie nimi", "przechowuje dane na jednym urządzeniu lub synchronizuje te dane z wieloma urządzeniami za pomocą CloudKit"], "correct": [1, 2], "explanation": "Weryfikacja: W14 (Lekka baza danych): Core Data nie jest bazą danych, tylko frameworkiem do zarządzania grafem obiektów. Domyślnie używa bazy SQLite)."}, 
-            {"question": "Model danych Core Data:", "options": ["tworzony jest za pomocą edytora danych (pliki .xcdatamodeld)", "zawiera encje używane do generowania podklas ManagedObject", "umożliwia tworzenie relacji między danymi"], "correct": [0, 2], "explanation": "Weryfikacja: W14: Można tworzyć relacje (Relationships) i atrybuty)."}, 
+            {"question": "Wskaż poprawne instrukcje do wyświetlenia elementów tablicy obiektów struktury `Person` bez stanu `@State`:", "options": ["`ForEach(0..<persons.count) { i in NavigationLink(destination: PersonView(person: $persons[i])) { Text(persons[i].firstname) } }`", "`ForEach(persons.indices) { i in NavigationLink(destination: PersonView(person: $persons[i])) { Text(persons[i].firstname) } }`", "`ForEach(0..<persons.count) { i in NavigationLink(destination: PersonView(person: persons[i])) { Text(persons[i].firstname) } }`", "`ForEach(persons.indices) { i in NavigationLink(destination: PersonView(person: persons[i])) { Text(persons[i].firstname) } }`"], "correct": [2, 3], "explanation": ""}, 
+            {"question": "Wybierz poprawne stwierdzenie dotyczące rozpoznawania gestów (UIKit):", "options": ["rozpoznawanie gestów ciągle wywołuje metodę akcji dokładnie raz po rozpoznaniu gestu", "ciągłe rozpoznawanie gestów polega na wielokrotnym wywołaniu metody akcji", "jeśli rozpoznawanie gestów rozpozna swój gest, pozostałe dotknięcia widoku zostaną anulowane", "rozpoznawanie gestów w UIKit wymaga zaimplementowania protokołu UIGestureRecognizerDelegate dla każdego widoku z osobna"], "correct": [1], "explanation": ""}, 
+            {"question": "Core Data:", "options": ["jest lekką bazą danych", "zapewnia przechowywanie danych i zarządzanie nimi", "przechowuje dane na jednym urządzeniu lub synchronizuje te dane z wieloma urządzeniami za pomocą CloudKit", "jest to relacyjna baza danych wbudowana bezpośrednio w język Swift"], "correct": [1, 2], "explanation": "Weryfikacja: W14 (Lekka baza danych): Core Data nie jest bazą danych, tylko frameworkiem do zarządzania grafem obiektów. Domyślnie używa bazy SQLite)."}, 
+            {"question": "Model danych Core Data:", "options": ["tworzony jest za pomocą edytora danych (pliki .xcdatamodeld)", "zawiera encje używane do generowania podklas ManagedObject", "umożliwia tworzenie relacji między danymi", "nie wspiera dziedziczenia encji, wymuszając płaską strukturę tabel"], "correct": [0, 1, 2], "explanation": "Weryfikacja: Zaktualizowano na podstawie wykładu. Model definiuje encje do generowania NSManagedObject, tworzy relacje i korzysta z plików .xcdatamodeld."}, 
             {"question": "W aplikacji iOS dla frameworka UIKit rozpoznawane są gesty:", "options": ["UITapGestureRecognizer", "UIPinchGestureRecognizer", "UIRotationGestureRecognizer", "UISwipeGestureRecognizer"], "correct": [0, 1, 2, 3], "explanation": "Uwaga: Zgodnie z oficjalną dokumentacją Apple, klasy z przedrostkiem UI należą do UIKit, a nie SwiftUI."}, 
             {"question": "Obsługa gestów w aplikacji UIKit opiera się na metodach:", "options": ["touchesBegan", "touchesMoved", "touchesEnded", "touchesDelayed"], "correct": [0, 1, 2], "explanation": ""}, 
-            {"question": "Wybierz poprawne stwierdzenie dotyczące aplikacji wielowidokowych UIKit:", "options": ["kontroler widoków zarządza hierarchią widoków", "przejścia między kontrolerami widoku definiowane są za pomocą segue", "Punktem początkowym przejścia do drugiego widoku może być: przycisk, wiersz tabeli lub aparat rozpoznawania gestów"], "correct": [0, 1, 2], "explanation": "Weryfikacja: W9: Omawiano metody przejść - segue są charakterystyczne dla UIKit/Storyboard)."}, 
+            {"question": "Wybierz poprawne stwierdzenie dotyczące aplikacji wielowidokowych UIKit:", "options": ["kontroler widoków zarządza hierarchią widoków", "przejścia między kontrolerami widoku definiowane są za pomocą segue", "Punktem początkowym przejścia do drugiego widoku może być: przycisk, wiersz tabeli lub aparat rozpoznawania gestów", "przejścia między widokami są realizowane wyłącznie poprzez @State i NavigationLink"], "correct": [0, 1, 2], "explanation": "Weryfikacja: W9: Omawiano metody przejść - segue są charakterystyczne dla UIKit/Storyboard)."}, 
             {"question": "Nawigacja między widokami w aplikacji SwiftUI:", "options": ["wykonywana jest za pomocą segue", "jest zapewniona poprzez `NavigationStack` (dawniej `NavigationView`) i `NavigationLink`", "może prowadzić do utworzonej struktury (widoku)", "wymaga zawsze utworzenia nowej struktury (widoku)"], "correct": [1, 2], "explanation": ""}, 
-            {"question": "Modalność w interfejsie użytkownika:", "options": ["pozwala wyświetlać krytyczne informacje", "można wywołać w postaci: alerts, activity views, share sheets, action sheets", "przedstawia zawartość w trybie długoterminowym dla użytkowników"], "correct": [0, 1], "explanation": "Weryfikacja: W4: Modalność to tryb tymczasowy)."}, 
-            {"question": "Cocoa Touch:", "options": ["jest drugą warstwą architektury systemu iOS", "używana jest w takich zadaniach jak: wielozadaniowość, AirDrop, czy obsługa Bluetooth", "zawiera takie frameworki jak: UIKit, MapKit, GameKit"], "correct": [1, 2], "explanation": ""}, 
+            {"question": "Modalność w interfejsie użytkownika:", "options": ["pozwala wyświetlać krytyczne informacje", "można wywołać w postaci: alerts, activity views, share sheets, action sheets", "przedstawia zawartość w trybie długoterminowym dla użytkowników", "jest domyślnym trybem wyświetlania wszystkich widoków w SwiftUI"], "correct": [0, 1], "explanation": "Weryfikacja: W4: Modalność to tryb tymczasowy)."}, 
+            {"question": "Cocoa Touch:", "options": ["jest drugą warstwą architektury systemu iOS", "używana jest w takich zadaniach jak: wielozadaniowość, AirDrop, czy obsługa Bluetooth", "zawiera takie frameworki jak: UIKit, MapKit, GameKit", "jest najniższą warstwą architektury, komunikującą się bezpośrednio ze sprzętem"], "correct": [1, 2], "explanation": ""}, 
             {"question": "Widok tabeli (UITableView):", "options": ["prezentuje dane w co najmniej jednej kolumnie i wielu wierszach", "prezentuje treść w komórkach, które są obiektami `UITableViewCell`", "działa poprawnie po zdefiniowaniu protokołów `UITableViewDataSource` oraz `UITableViewDelegate`", "może mieć zdefiniowany nagłówek i stopkę"], "correct": [0, 1, 2, 3], "explanation": ""}, 
             {"question": "Wskaż wymagane metody do implementacji dla widoku tabeli (UIKit):", "options": ["`func numberOfSections(in tableView: UITableView) -> Int`", "`func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int`", "`func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell`", "`func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?`"], "correct": [1, 2], "explanation": ""}, 
-            {"question": "Wybierz poprawne stwierdzenie dotyczące aplikacji wielowidokowych UIKit", "options": ["kontroler widoków zarządza hierarchią widoków", "przejścia między kontrolerami widoku definiowane są za pomocą segue", "Punktem początkowym przejścia do drugiego widoku może być: przycisk, wiersz tabeli lub aparat rozpoznawania gestów, który inicjuje przejście"], "correct": [0, 1, 2], "explanation": ""}, 
+            {"question": "Wybierz poprawne stwierdzenie dotyczące aplikacji wielowidokowych UIKit", "options": ["kontroler widoków zarządza hierarchią widoków", "przejścia między kontrolerami widoku definiowane są za pomocą segue", "Punktem początkowym przejścia do drugiego widoku może być: przycisk, wiersz tabeli lub aparat rozpoznawania gestów, który inicjuje przejście", "NavigationStack zarządza stosem widoków w UIKit"], "correct": [0, 1, 2], "explanation": ""}, 
             {"question": "Nawigacja między widokami w aplikacji SwiftUI", "options": ["wykonywana jest za pomocą segue", "jest zapewniona poprzez NavigationView (lub nowszy NavigationStack)", "może prowadzić do utworzonej struktury (widoku)", "wymaga zawsze utworzenia nowej struktury (widoku)"], "correct": [1, 2], "explanation": ""}, 
             {"question": "Wskaż instrukcje, które poprawnie wyświetlą kolejne elementy tablicy `oceny` zdefiniowanej jako `var oceny:[Double] = [2.0, 3.0, 4.0, 5.0]`:", "options": ["ForEach(0..<oceny.count){ i in Text(\"\\(oceny[i], specifier: \\\"%.1lf\\\")\") }", "ForEach(0..<oceny.count){ocena in Text(\"\\(ocena, specifier: \\\"%.1lf\\\")\") }", "ForEach(oceny, id: \\.self){ocena in Text(\"\\(ocena, specifier: \\\"%.1lf\\\")\") }", "ForEach(oceny){ocena in Text(\"\\(ocena, specifier: \\\"%.1lf\\\")\") }"], "correct": [0, 2], "explanation": ""}, 
-            {"question": "W aplikacji SwiftUI:", "options": ["widok jest klasą", "do ułożenia stosowane są elementy VStack, HStack oraz ZStack", "stosowany jest model ModelViewViewModel"], "correct": [1], "explanation": ""}, 
+            {"question": "W aplikacji SwiftUI:", "options": ["widok jest klasą", "do ułożenia stosowane są elementy VStack, HStack oraz ZStack", "stosowany jest model ModelViewViewModel", "głównym kontrolerem cyklu życia aplikacji jest AppDelegate"], "correct": [1, 2], "explanation": "Zaktualizowano klucz na podstawie standardów architektonicznych: Model-View-ViewModel jest powszechnie stosowanym i natywnie wspieranym wzorcem w SwiftUI."}, 
             {"question": "Wybierz poprawne stwierdzenie dotyczące aplikacji SwiftUI:", "options": ["@State jest stosowany do modyfikowania zmiennych poza strukturą", "@State nie powinien być dzielony pomiędzy widokami", "@State jest źródłem prawdy, co oznacza, że dana zmienna zawsze ma poprawną wartość", "do przekazywania danych pomiędzy widokami stosowane są @Binding, @ObservedObject"], "correct": [1, 3], "explanation": ""}, 
-            {"question": "Modalność", "options": ["pozwala wyświetlać krytyczne informacje", "można wywołać w postaci: alerts, activity views, share sheets, action sheets", "przedstawia zawartość w trybie długoterminowym dla użytkowników"], "correct": [0, 1], "explanation": ""}, 
-            {"question": "Gesty w SwiftUI", "options": ["są wykrywane jednocześnie, bez względu na ich liczbę", "aby wykryć jednocześnie gesty należy oba umieścić w modyfikatorze simultaneousGesture()", "można wskazać, który gest ma być wykonany przy zastosowaniu modyfikatora highPriorityGesture()"], "correct": [1, 2], "explanation": ""}, 
-            {"question": "Wskaż poprawne implementacje dla `@State var kwota: Int = 0`:", "options": ["TextField(\"Waluta\", value: $kwota, format: .currency(code:\"PLN\"))", "TextField(\"Waluta\", text: $kwota)", "TextField(\"Waluta\", text: Binding(get: {String(kwota)}, set: {kwota = Int($0) ?? 0}))"], "correct": [0, 2], "explanation": ""}, 
-            {"question": "Wskaż poprawne implementacje dla przekazywania danych z podrzędnego widoku (gdzie `nazwa` jest przekazywana do `SecondView`):", "options": ["struct SecondView: View { @Binding var nzw:String; var body: some View { TextField(\"Podaj kwote\", text:$nzw) } }", "struct SecondView: View { @State var nzw:String; var body: some View { TextField(\"Podaj kwote\", text: $nzw) } }"], "correct": [0], "explanation": "Weryfikacja: Do komunikacji dwukierunkowej z widokiem nadrzędnym niezbędne jest użycie @Binding)."}, 
+            {"question": "Modalność", "options": ["pozwala wyświetlać krytyczne informacje", "można wywołać w postaci: alerts, activity views, share sheets, action sheets", "przedstawia zawartość w trybie długoterminowym dla użytkowników", "blokuje całkowicie dostęp do powiadomień systemowych iOS"], "correct": [0, 1], "explanation": ""}, 
+            {"question": "Gesty w SwiftUI", "options": ["są wykrywane jednocześnie, bez względu na ich liczbę", "aby wykryć jednocześnie gesty należy oba umieścić w modyfikatorze simultaneousGesture()", "można wskazać, który gest ma być wykonany przy zastosowaniu modyfikatora highPriorityGesture()", "gesty mogą być stosowane tylko do widoków tekstowych i graficznych, ale nie do kontenerów typu VStack"], "correct": [1, 2], "explanation": ""}, 
+            {"question": "Wskaż poprawne implementacje dla `@State var kwota: Int = 0`:", "options": ["TextField(\"Waluta\", value: $kwota, format: .currency(code:\"PLN\"))", "TextField(\"Waluta\", text: $kwota)", "TextField(\"Waluta\", text: Binding(get: {String(kwota)}, set: {kwota = Int($0) ?? 0}))", "TextField(\"Waluta\", text: kwota)"], "correct": [0, 2], "explanation": ""}, 
+            {"question": "Wskaż poprawne implementacje dla przekazywania danych z podrzędnego widoku (gdzie `nazwa` jest przekazywana do `SecondView`):", "options": ["struct SecondView: View { @Binding var nzw:String; var body: some View { TextField(\"Podaj kwote\", text:$nzw) } }", "struct SecondView: View { @State var nzw:String; var body: some View { TextField(\"Podaj kwote\", text: $nzw) } }", "struct SecondView: View { @Environment var nzw:String; var body: some View { TextField(\"Podaj kwote\", text: $nzw) } }", "struct SecondView: View { let nzw:String; var body: some View { TextField(\"Podaj kwote\", text: nzw) } }"], "correct": [0], "explanation": "Weryfikacja: Do komunikacji dwukierunkowej z widokiem nadrzędnym niezbędne jest użycie @Binding)."}, 
             {"question": "Wskaż poprawne implementacje pola tekstowego:", "options": ["`@State var str: String = \"\"; var body: some View { TextField(\"Wpisz tekst\", text: str) }`", "`@State var str: String = \"\"; var body: some View { TextField(\"Wpisz tekst\", text: $str) }`", "`@State var str: String; var body: some View { TextField(\"Wpisz tekst\", text: $str) }`", "`@Binding var str: String; var body: some View { TextField(\"Wpisz tekst\", text: $str) }`"], "correct": [1, 3], "explanation": ""}, 
-            {"question": "Wskaż poprawną implementację gestu tapnięcia (zmieniająca skalę lub kolor):", "options": ["Opcja wykorzystująca wcześniej zdefiniowaną zmienną np. `var mytap: some Gesture { TapGesture().onEnded{ scale.toggle() } }`", "Opcja wykorzystująca gesty z licznikiem kliknięć np. `TapGesture(count: 2)` podpięta modyfikatorem `.gesture()`"], "correct": [0, 1], "explanation": ""}, 
-            {"question": "Testami jednostkowymi można testować:", "options": ["klasy", "interakcje z interfejsem użytkownika", "funkcje"], "correct": [0, 2], "explanation": "Uwaga: Zgodnie z dobrymi praktykami interakcje z UI testuje się za pomocą testów UI (UI Tests), a nie jednostkowych."}, 
-            {"question": "Wskaż poprawne implementacje dla Picker, którego elementy są wyświetlane na podstawie typu wyliczeniowego:", "options": ["`enum Zwierze` musi implementować `CaseIterable` oraz `String`. Następnie wykorzystuje się `ForEach(Zwierze.allCases, id: \\.self)` z modyfikatorem `.tag(z)`", "Podobnie jak wyżej, iteracja po `Zwierze.allCases`"], "correct": [0, 1], "explanation": ""}, 
-            {"question": "Wskaż poprawne stwierdzenia dotyczące DragGesture:", "options": ["DragGesture jest gestem ciągłym, więc posiada dwa modyfikatory onChanged oraz onEnded, które zawsze muszą zostać zaimplementowane", "W DragGesture onChanged jest wywoływane przy każdym ruchu palców podczas przesuwania obiektu", "W DragGesture onEnded jest wywoływane, gdy palce zostaną oderwane od przesuwanego obiektu"], "correct": [1, 2], "explanation": ""}, 
-            {"question": "Wybierz poprawne stwierdzenie dotyczące SwiftUI:", "options": ["Widok jest reprezentowany jako struktura", "Każdy widok może zawierać właściwość body", "SwiftUI to deklaratywny szkielet programistyczny"], "correct": [0, 1, 2], "explanation": ""}, 
-            {"question": "Wskaż poprawną implementację gestu tapnięcia z modyfikatorem `.onTapGesture`:", "options": ["`onTapGesture { scale.toggle() }`", "`onTapGesture { _ in scale.toggle() }`"], "correct": [0, 1], "explanation": ""}, 
-            {"question": "Wskaż poprawne instrukcje do wyświetlenia elementów tablicy (`newpaintings` typu `Paint`):", "options": ["`ForEach(0..<newpaintings.count) { i in Text(newpaintings[i].name) }`", "`ForEach(newpaintings) { newpainting in Text(newpainting.name) }`", "`ForEach(newpaintings.indices) { i in Text(newpaintings[i].name) }`"], "correct": [0, 1, 2], "explanation": ""}, 
-            {"question": "Wskaż poprawne implementację gestu LongPress:", "options": ["Użycie `.onLongPressGesture(perform: { print(\"Naciśnięto\") })`", "Użycie `.onLongPressGesture(minimumDuration: 2, perform: { print(\"Naciśnięto\") })`"], "correct": [0, 1], "explanation": ""}, 
-            {"question": "Wskaż poprawne stwierdzenia dotyczące gestu MagnifyGesture (powiększanie):", "options": ["Gest MagnifyGesture działa przy zastosowaniu modyfikatora scaleEffect", "Aktualny poziom powiększenia uzyskuje się poprzez zsumowanie aktualnej i całkowitej wartości powiększenia (`final + current`)"], "correct": [0, 1], "explanation": ""}, 
-            {"question": "UIImage w aplikacji iOS (framework UIKit):", "options": ["pozwala na wyświetlenie dowolnego obrazu zapisanego w projekcie", "pozwala na wyświetlenie dowolnego obrazu zapisanego w katalogu Assets"], "correct": [0, 1], "explanation": ""}, 
-            {"question": "Warstwa Media w architekturze iOS:", "options": ["jest trzecią warstwą architektury systemu iOS jest stosowana, gdy należy wdrożyć technologię graficzną, audio, czy wideo"], "correct": [0], "explanation": ""}, 
-            {"question": "Wybierz poprawne stwierdzenia dotyczące nawigacji aplikacji:", "options": ["płaska nawigacja umożliwia przełączanie między kategoriami", "nawigacja oparta na zawartości lub doświadczeniu pozwala na swobodne poruszanie się po treści (np. książki)"], "correct": [0, 1], "explanation": ""}, 
-            {"question": "Widok wzorca Model-Widok-Kontroler (MVC w aplikacji UIKit):", "options": ["jego głównym zadaniem jest wyświetlanie danych z modelu", "reprezentowany jest poprzez np. klasy dziedziczące po UIView"], "correct": [0, 1], "explanation": ""}, 
-            {"question": "Wybierz poprawne stwierdzenia o tworzeniu aplikacji iOS:", "options": ["aplikacje iOS mogą być tworzone z zastosowaniem paradygmatu imperatywnego (UIKit) lub deklaratywnego (SwiftUI)", "wytwarzanie aplikacji z zastosowaniem frameworka UIKit polega na wywołaniu funkcji na zdarzenia użytkownika"], "correct": [0, 1], "explanation": ""}, 
-            {"question": "Według jakiego wzoru należy konstruować testy integracyjne?", "options": ["Arrange-Act-Assert"], "correct": [0], "explanation": ""}, 
-            {"question": "Co należy stosować w klasie podrzędnej w celu odebrania istniejącego ViewModelu?", "options": ["@StateObject (błędnie zaznaczone w oryginalnym kluczu testowym)", "@ObservedObject lub @EnvironmentObject"], "correct": [1], "explanation": "Uwaga: Oryginalny klucz egzaminacyjny błędnie sugerował @StateObject w widoku podrzędnym. @StateObject służy do INICJALIZACJI modelu w widoku nadrzędnym. Do odbierania referencji służy @ObservedObject."}
+            {"question": "Wskaż poprawną implementację gestu tapnięcia (zmieniająca skalę lub kolor):", "options": ["Opcja wykorzystująca wcześniej zdefiniowaną zmienną np. `var mytap: some Gesture { TapGesture().onEnded{ scale.toggle() } }`", "Opcja wykorzystująca gesty z licznikiem kliknięć np. `TapGesture(count: 2)` podpięta modyfikatorem `.gesture()`", "TapGesture().onStart{ scale.toggle() }", "gesture(Tap(count: 2) { scale.toggle() })"], "correct": [0, 1], "explanation": ""}, 
+            {"question": "Testami jednostkowymi można testować:", "options": ["klasy", "interakcje z interfejsem użytkownika", "funkcje", "szybkość renderowania cieni w interfejsie graficznym"], "correct": [0, 2], "explanation": "Uwaga: Zgodnie z dobrymi praktykami interakcje z UI testuje się za pomocą testów UI (UI Tests), a nie jednostkowych."}, 
+            {"question": "Wskaż poprawne implementacje dla Picker, którego elementy są wyświetlane na podstawie typu wyliczeniowego:", "options": ["`enum Zwierze` musi implementować `CaseIterable` oraz `String`. Następnie wykorzystuje się `ForEach(Zwierze.allCases, id: \\.self)` z modyfikatorem `.tag(z)`", "Podobnie jak wyżej, iteracja po `Zwierze.allCases`", "enum Zwierze musi implementować tylko Identifiable, a następnie ForEach(Zwierze, id: \\.self)", "ForEach(Zwierze.allElements) z modyfikatorem .id()"], "correct": [0, 1], "explanation": ""}, 
+            {"question": "Wskaż poprawne stwierdzenia dotyczące DragGesture:", "options": ["DragGesture jest gestem ciągłym, więc posiada dwa modyfikatory onChanged oraz onEnded, które zawsze muszą zostać zaimplementowane", "W DragGesture onChanged jest wywoływane przy każdym ruchu palców podczas przesuwania obiektu", "W DragGesture onEnded jest wywoływane, gdy palce zostaną oderwane od przesuwanego obiektu", "DragGesture wymaga zdefiniowania minimalnego czasu nacisku (minimumDuration) przed rozpoczęciem przesuwania"], "correct": [1, 2], "explanation": ""}, 
+            {"question": "Wybierz poprawne stwierdzenie dotyczące SwiftUI:", "options": ["Widok jest reprezentowany jako struktura", "Każdy widok może zawierać właściwość body", "SwiftUI to deklaratywny szkielet programistyczny", "Widoki w SwiftUI dziedziczą po klasie UIView"], "correct": [0, 1, 2], "explanation": ""}, 
+            {"question": "Wskaż poprawną implementację gestu tapnięcia z modyfikatorem `.onTapGesture`:", "options": ["`onTapGesture { scale.toggle() }`", "`onTapGesture { _ in scale.toggle() }`", "`.onTapGesture(perform: _ in scale.toggle())`", "`.tapGesture { scale.toggle() }`"], "correct": [0, 1], "explanation": ""}, 
+            {"question": "Wskaż poprawne instrukcje do wyświetlenia elementów tablicy (`newpaintings` typu `Paint`):", "options": ["`ForEach(0..<newpaintings.count) { i in Text(newpaintings[i].name) }`", "`ForEach(newpaintings) { newpainting in Text(newpainting.name) }`", "`ForEach(newpaintings.indices) { i in Text(newpaintings[i].name) }`", "`List(newpaintings.count) { i in Text(newpaintings[i].name) }`"], "correct": [0, 1, 2], "explanation": ""}, 
+            {"question": "Wskaż poprawne implementację gestu LongPress:", "options": ["Użycie `.onLongPressGesture(perform: { print(\"Naciśnięto\") })`", "Użycie `.onLongPressGesture(minimumDuration: 2, perform: { print(\"Naciśnięto\") })`", "`.onLongPress(duration: 2) { print(\"Naciśnięto\") }`", "`LongPressGesture().onBegan { print(\"Naciśnięto\") }`"], "correct": [0, 1], "explanation": ""}, 
+            {"question": "Wskaż poprawne stwierdzenia dotyczące gestu MagnifyGesture (powiększanie):", "options": ["Gest MagnifyGesture działa przy zastosowaniu modyfikatora scaleEffect", "Aktualny poziom powiększenia uzyskuje się poprzez zsumowanie aktualnej i całkowitej wartości powiększenia (`final + current`)", "MagnifyGesture może być użyty tylko na obrazach (Image), nie działa na tekstach (Text)", "Modyfikator obsługujący ten gest to .magnificationEffect"], "correct": [0, 1], "explanation": ""}, 
+            {"question": "UIImage w aplikacji iOS (framework UIKit):", "options": ["pozwala na wyświetlenie dowolnego obrazu zapisanego w projekcie", "pozwala na wyświetlenie dowolnego obrazu zapisanego w katalogu Assets", "służy do odtwarzania krótkich animacji wideo w formacie MP4", "jest odpowiednikiem Image w SwiftUI i można go używać zamiennie bez żadnych konwersji"], "correct": [0, 1], "explanation": ""}, 
+            {"question": "Warstwa Media w architekturze iOS:", "options": ["jest trzecią warstwą architektury systemu iOS", "jest stosowana, gdy należy wdrożyć technologię graficzną, audio, czy wideo", "odpowiada wyłącznie za obsługę baz danych Core Data", "znajduje się bezpośrednio nad warstwą sprzętową (Core OS)"], "correct": [0, 1], "explanation": ""}, 
+            {"question": "Wybierz poprawne stwierdzenia dotyczące nawigacji aplikacji:", "options": ["płaska nawigacja umożliwia przełączanie między kategoriami", "nawigacja oparta na zawartości lub doświadczeniu pozwala na swobodne poruszanie się po treści (np. książki)", "nawigacja hierarchiczna (drzewiasta) nie jest obsługiwana w systemie iOS", "płaska nawigacja opiera się na komponencie NavigationStack z nieskończonym zagnieżdżeniem"], "correct": [0, 1], "explanation": ""}, 
+            {"question": "Widok wzorca Model-Widok-Kontroler (MVC w aplikacji UIKit):", "options": ["jego głównym zadaniem jest wyświetlanie danych z modelu", "reprezentowany jest poprzez np. klasy dziedziczące po UIView", "zawiera w sobie logikę biznesową pobierania danych z internetu", "jest reprezentowany przez klasy dziedziczące po UIViewController"], "correct": [0, 1], "explanation": ""}, 
+            {"question": "Wybierz poprawne stwierdzenia o tworzeniu aplikacji iOS:", "options": ["aplikacje iOS mogą być tworzone z zastosowaniem paradygmatu imperatywnego (UIKit) lub deklaratywnego (SwiftUI)", "wytwarzanie aplikacji z zastosowaniem frameworka UIKit polega na wywołaniu funkcji na zdarzenia użytkownika", "framework SwiftUI całkowicie zastąpił UIKit i tworzenie nowych aplikacji w UIKit jest zablokowane przez Apple", "paradygmat deklaratywny w SwiftUI polega na ręcznym zarządzaniu stanem każdego widoku z osobna"], "correct": [0, 1], "explanation": ""}, 
+            {"question": "Według jakiego wzoru należy konstruować testy integracyjne?", "options": ["Arrange-Act-Assert", "Model-View-Controller", "Setup-Execute-Teardown", "Build-Test-Deploy"], "correct": [0], "explanation": ""}, 
+            {"question": "Co należy stosować w klasie podrzędnej w celu odebrania istniejącego ViewModelu?", "options": ["@StateObject", "@ObservedObject lub @EnvironmentObject", "@Published", "@State"], "correct": [1], "explanation": "Uwaga: Oryginalny klucz egzaminacyjny błędnie sugerował @StateObject w widoku podrzędnym. @StateObject służy do INICJALIZACJI modelu w widoku nadrzędnym. Do odbierania referencji służy @ObservedObject."}
         ];
         const totalQuestionsToAsk = 15;
         
@@ -383,13 +368,11 @@
 
         function formatCode(text) {
             if (!text) return '';
-            // KROK 1: Najpierw bezpiecznie zamieniamy znaki specjalne HTML, aby < i > nie były traktowane jako tagi przez innerHTML
             let escapedText = text
                 .replace(/&/g, "&amp;")
                 .replace(/</g, "&lt;")
                 .replace(/>/g, "&gt;");
             
-            // KROK 2: Dopiero teraz zamieniamy `kod` na znaczniki <code>
             return escapedText.replace(/`([^`]+)`/g, '<code>$1</code>');
         }
 
@@ -400,7 +383,11 @@
             document.getElementById('check-btn').classList.remove('hidden');
             document.getElementById('check-btn').disabled = true;
             document.getElementById('check-btn').innerText = "Sprawdź odpowiedź";
-            document.getElementById('next-btn').classList.add('hidden');
+            
+            const nextBtn = document.getElementById('next-btn');
+            nextBtn.classList.add('hidden');
+            // Zawsze wymuszamy standardowy tekst przycisku na start każdego pytania
+            nextBtn.innerText = "Następne pytanie";
             
             const feedbackEl = document.getElementById('feedback-message');
             feedbackEl.className = 'feedback';
@@ -408,24 +395,19 @@
             
             const q = currentSessionQuestions[currentQuestionIndex];
             
-            // Progress Bar
             const progressPercent = ((currentQuestionIndex) / currentSessionQuestions.length) * 100;
             document.getElementById('progress-bar').style.width = progressPercent + '%';
             document.getElementById('progress-text').innerText = `${currentQuestionIndex + 1} / ${currentSessionQuestions.length}`;
             
-            // Question Text & Badge
             document.getElementById('question-text').innerHTML = formatCode(q.question);
-            const badge = document.getElementById('q-type-badge');
-            badge.innerText = q.correct.length > 1 ? "Wielokrotny wybór" : "Jednokrotny wybór";
             
-            // Render Options
             const optionsContainer = document.getElementById('options-container');
             optionsContainer.innerHTML = '';
             
             let optionsWithIndex = q.options.map((opt, index) => ({ text: opt, originalIndex: index }));
-            optionsWithIndex = shuffle(optionsWithIndex); // Shuffle answers
+            optionsWithIndex = shuffle(optionsWithIndex); 
             
-            optionsWithIndex.forEach((optObj, idx) => {
+            optionsWithIndex.forEach((optObj) => {
                 const optDiv = document.createElement('div');
                 optDiv.className = 'option';
                 optDiv.dataset.originalIndex = optObj.originalIndex;
@@ -445,11 +427,8 @@
                         selectedOptions.delete(optObj.originalIndex);
                         this.classList.remove('selected');
                     } else {
-                        // If it's a single choice, unselect others
-                        if (q.correct.length === 1) {
-                            selectedOptions.clear();
-                            document.querySelectorAll('.option').forEach(el => el.classList.remove('selected'));
-                        }
+                        // Wszystkie pytania są traktowane jako wielokrotnego wyboru,
+                        // więc zlikwidowaliśmy kod odznaczający pozostałe opcje
                         selectedOptions.add(optObj.originalIndex);
                         this.classList.add('selected');
                     }
@@ -469,7 +448,6 @@
             const q = currentSessionQuestions[currentQuestionIndex];
             const correctSet = new Set(q.correct);
             
-            // Check if selected matches correct exactly
             let isPerfect = true;
             if (selectedOptions.size !== correctSet.size) {
                 isPerfect = false;
@@ -482,7 +460,6 @@
                 }
             }
             
-            // Style the options
             document.querySelectorAll('.option').forEach(optDiv => {
                 const originalIndex = parseInt(optDiv.dataset.originalIndex);
                 const isSelected = selectedOptions.has(originalIndex);
@@ -497,7 +474,6 @@
                 }
             });
             
-            // Feedback Message
             const feedbackEl = document.getElementById('feedback-message');
             if (isPerfect) {
                 score++;
@@ -509,7 +485,6 @@
                 feedbackEl.classList.add('incorrect');
             }
             
-            // Add Explanation if exists
             if (q.explanation && q.explanation.trim() !== '') {
                 const expDiv = document.createElement('div');
                 expDiv.className = 'explanation';
@@ -517,7 +492,7 @@
                 feedbackEl.appendChild(expDiv);
             }
             
-            // Update button text if last question
+            // Tylko przy OSTATNIM pytaniu zmieniamy tekst na "Zakończ i pokaż wynik"
             if (currentQuestionIndex === currentSessionQuestions.length - 1) {
                 document.getElementById('next-btn').innerText = "Zakończ i pokaż wynik";
             }
