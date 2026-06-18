@@ -860,10 +860,10 @@
         {
             "question": "Wskaż poprawne implementację gestu LongPress w SwiftUI (gdzie z tablicy losowany jest nowy kolor):",
             "options": [
-                "`.onLongPressGesture(perform: { color = colors.randomElement() })` (brak rozpakowania Optionala)",
+                "`.onLongPressGesture(perform: { color = colors.randomElement() })` ",
                 "`.onLongPressGesture(minimumDuration: 2, perform: { color = colors.randomElement()! })`",
                 "`.onLongPressGesture(perform: { color = colors.randomElement()! })`",
-                "`.longPressAction(duration: 2) { color = colors.randomElement()! }` (modyfikator nieistniejący)"
+                "`.longPressAction(duration: 2) { color = colors.randomElement()! }` "
             ],
             "correct": [1, 2],
             "explanation": "Weryfikacja: Metoda randomElement() zwraca typ opcjonalny (Color?). Aby przypisać go do zmiennej typu Color, należy go rozpakować znakiem `!`. Pierwsza opcja spowoduje błąd kompilacji. Opcja ostatnia to wymyślona zmyłka."
