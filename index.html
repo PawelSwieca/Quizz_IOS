@@ -350,7 +350,7 @@
             "Należy wskazać, co będzie testowane, poprzez dodanie `@testable` przed nazwą klasy",
             "Należy wskazać, co będzie testowane, poprzez dodanie `@testable import` przed nazwą modułu",
           ],
-          correct: [3],
+          correct: [0, 3],
           explanation: "",
         },
         {
@@ -674,16 +674,15 @@
           explanation: "",
         },
         {
-          question:
-            "Wskaż poprawną implementację gestu tapnięcia (zmieniająca skalę lub kolor):",
-          options: [
-            "Opcja wykorzystująca wcześniej zdefiniowaną zmienną np. `var mytap: some Gesture { TapGesture().onEnded{ scale.toggle() } }`",
-            "Opcja wykorzystująca gesty z licznikiem kliknięć np. `TapGesture(count: 2)` podpięta modyfikatorem `.gesture()`",
-            "TapGesture().onStart{ scale.toggle() }",
-            "gesture(Tap(count: 2) { scale.toggle() })",
-          ],
-          correct: [0, 1],
-          explanation: "",
+            "question": "Wskaż poprawną implementację gestu tapnięcia (zdefiniowanego w zmiennej):",
+            "options": [
+                "var mytap: some Gesture {\n  TapGesture().onEnded { scale.toggle() }\n}\n@State var scale: Bool = false\nvar body: some View {\n  Image(systemName: \"plus\")\n    .scaleEffect(scale ? 2 : 4)\n    .gesture(mytap)\n}",
+                "var mytap2: some Gesture {\n  TapGesture(count: 2).onEnded { color = .blue }\n}\nvar mytap1: some Gesture {\n  TapGesture().onEnded { scale.toggle() }\n}\n@State var scale: Bool = false\n@State var color: Color = .black\nvar body: some View {\n  Image(systemName: \"plus\")\n    .foregroundColor(color)\n    .scaleEffect(scale ? 2 : 4)\n    .gesture(mytap2)\n    .gesture(mytap1)\n}",
+                "var mytap1: TapGesture { \n  TapGesture().onEnded { scale.toggle() }\n}\n@State var scale: Bool = false\nvar body: some View {\n  Image(systemName: \"plus\")\n    .scaleEffect(scale ? 2 : 4)\n    .gesture(mytap1)\n}",
+                "var mytap1: some Gesture {\n  TapGesture().onChanged { scale.toggle() } \n}\n@State var scale: Bool = false\nvar body: some View {\n  Image(systemName: \"plus\")\n    .scaleEffect(scale ? 2 : 4)\n    .gesture(mytap1)\n}"
+            ],
+            "correct": [0, 1],
+            "explanation": "Weryfikacja: Gest modyfikowany przez .onEnded zwraca typ 'EndedGesture', dlatego zmienna go przechowująca bezwzględnie musi używać nieprzezroczystego typu 'some Gesture'. Próba wymuszenia 'var mytap: TapGesture' (opcja 3) spowoduje błąd. Opcja 4 jest błędna, ponieważ gest tapnięcia nie posiada modyfikatora .onChanged (w przeciwieństwie do DragGesture)."
         },
         {
           question: "Testami jednostkowymi można testować:",
@@ -698,16 +697,15 @@
             "Uwaga: Zgodnie z dobrymi praktykami interakcje z UI testuje się za pomocą testów UI (UI Tests), a nie jednostkowych.",
         },
         {
-          question:
-            "Wskaż poprawne implementacje dla Picker, którego elementy są wyświetlane na podstawie typu wyliczeniowego:",
-          options: [
-            "`enum Zwierze` musi implementować `CaseIterable` oraz `String`. Następnie wykorzystuje się `ForEach(Zwierze.allCases, id: \\.self)` z modyfikatorem `.tag(z)`",
-            "Podobnie jak wyżej, iteracja po `Zwierze.allCases`",
-            "enum Zwierze musi implementować tylko Identifiable, a następnie ForEach(Zwierze, id: \\.self)",
-            "ForEach(Zwierze.allElements) z modyfikatorem .id()",
-          ],
-          correct: [0, 1],
-          explanation: "",
+            question: "Wskaż poprawne implementacje dla Picker, którego elementy są wyświetlane na podstawie typu wyliczeniowego:",
+            options: [
+                "enum Zwierze: String, CaseIterable {\n  case kot = \"Kot\"\n  case pies = \"Pies\"\n  case myszka = \"Myszka\"\n}\nstruct View8: View {\n  @State var zwierze: Zwierze = .kot\n  var body: some View {\n    Picker(\"Wybierz\", selection: $zwierze){\n      ForEach(Zwierze.allCases, id: \\.self){ z in\n        Text(z.rawValue).tag(z)\n      }\n    }\n  }\n}",
+                "enum Zwierze: String, CaseIterable {\n  case kot = \"Kot\"\n  case pies = \"Pies\"\n  case myszka = \"Myszka\"\n}\nstruct View8: View {\n  @State var zwierze: Zwierze = .kot\n  var body: some View {\n    Picker(\"Wybierz\", selection: $zwierze){\n      ForEach(Zwierze.allCases, id: \\.self){ z in\n        Text(z.rawValue)\n      }\n    }\n  }\n}",
+                "enum Zwierze: String{\n  case kot = \"Kot\"\n  case pies = \"Pies\"\n  case myszka = \"Myszka\"\n}\n// nie dostaje CaseIterable obok String\nstruct View8: View {\n  @State var zwierze: Zwierze = .kot\n  var body: some View {\n    Picker(\"Wybierz\", selection: $zwierze){\n      ForEach(Zwierze.allCases, id: \\.self){ z in\n        Text(z.rawValue)\n      }\n    }\n  }\n}",
+                "enum Zwierze: String{\n  case kot = \"Kot\"\n  case pies = \"Pies\"\n  case myszka = \"Myszka\"\n}\n// nie dostaje CaseIterable obok String\nstruct View8: View {\n  @State var zwierze: Zwierze = .kot\n  var body: some View {\n    Picker(\"Wybierz\", selection: $zwierze){\n      ForEach(Zwierze.allCases, id: \\.self){ z in\n        Text(z.rawValue).tag(z)\n      }\n    }\n  }\n}"
+            ],
+            correct: [0, 1],
+            explanation: "Weryfikacja: Aby iterować po typie wyliczeniowym używając `.allCases`, enum bezwzględnie musi implementować protokół `CaseIterable` (co wyklucza opcje C i D). Opcja A jest klasycznie poprawna. Opcja B jest również poprawna, ponieważ w SwiftUI modyfikator `.tag()` jest dodawany automatycznie, jeśli typ w identyfikatorze (id) pokrywa się z typem przypisanym w zmiennej (selection)."
         },
         {
           question: "Wskaż poprawne stwierdzenia dotyczące DragGesture:",
@@ -767,16 +765,15 @@
           explanation: "",
         },
         {
-          question:
-            "Wskaż poprawne stwierdzenia dotyczące gestu MagnifyGesture (powiększanie):",
-          options: [
-            "Gest MagnifyGesture działa przy zastosowaniu modyfikatora scaleEffect",
-            "Aktualny poziom powiększenia uzyskuje się poprzez zsumowanie aktualnej i całkowitej wartości powiększenia (`final + current`)",
-            "MagnifyGesture może być użyty tylko na obrazach (Image), nie działa na tekstach (Text)",
-            "Modyfikator obsługujący ten gest to .magnificationEffect",
-          ],
-          correct: [0, 1],
-          explanation: "",
+            "question": "Wskaż poprawne stwierdzenia dotyczące gestu MagnifyGesture (powiększanie) na podstawie poniższego kodu:\n\n@State private var final = 1.0\n@State private var current = 0.0\nvar body: some View {\n  Text(\"Hello, World!\")\n    .scaleEffect(final + current)\n    .gesture(\n      MagnifyGesture()\n        .onChanged { value in\n          current = value.magnification - 1\n        }\n        .onEnded { _ in\n          final += current\n          current = 0\n        }\n    )\n}",
+            "options": [
+                "Gest MagnifyGesture działa przy zastosowaniu modyfikatora scaleEffect",
+                "Aktualny poziom powiększenia uzyskuje się poprzez zsumowanie aktualnej i całkowitej wartości powiększenia (`final + current`)",
+                "MagnifyGesture może być użyty tylko na obrazach (Image), nie działa na tekstach (Text)",
+                "Modyfikator obsługujący ten gest to .magnificationEffect"
+            ],
+            "correct": [0, 1],
+            "explanation": "Weryfikacja: W SwiftUI powiększenie wizualne najczęściej implementuje się łącząc MagnifyGesture z modyfikatorem .scaleEffect. Matematyczne sumowanie 'final + current' pozwala na zachowanie stanu powiększenia pomiędzy kolejnymi gestami szczypania. Gesty można aplikować na dowolne widoki wizualne, w tym Text."
         },
         {
           question: "UIImage w aplikacji iOS (framework UIKit):",
@@ -860,6 +857,39 @@
           explanation:
             "Uwaga: Oryginalny klucz egzaminacyjny błędnie sugerował @StateObject w widoku podrzędnym. @StateObject służy do INICJALIZACJI modelu w widoku nadrzędnym. Do odbierania referencji służy @ObservedObject.",
         },
+        {
+            "question": "Wskaż poprawne implementację gestu LongPress w SwiftUI (gdzie z tablicy losowany jest nowy kolor):",
+            "options": [
+                "`.onLongPressGesture(perform: { color = colors.randomElement() })` (brak rozpakowania Optionala)",
+                "`.onLongPressGesture(minimumDuration: 2, perform: { color = colors.randomElement()! })`",
+                "`.onLongPressGesture(perform: { color = colors.randomElement()! })`",
+                "`.longPressAction(duration: 2) { color = colors.randomElement()! }` (modyfikator nieistniejący)"
+            ],
+            "correct": [1, 2],
+            "explanation": "Weryfikacja: Metoda randomElement() zwraca typ opcjonalny (Color?). Aby przypisać go do zmiennej typu Color, należy go rozpakować znakiem `!`. Pierwsza opcja spowoduje błąd kompilacji. Opcja ostatnia to wymyślona zmyłka."
+        },
+        {
+            "question": "Ustawienie elementów graficznych (prostokąt z tekstem, a pod nimi kółko) można otrzymać stosując:",
+            "options": [
+                "VStack na zewnątrz: `VStack { HStack { Rectangle... Text... } Circle... }`",
+                "HStack na zewnątrz: `HStack { VStack { Rectangle... Text... } Circle... }`",
+                "ZStack na zewnątrz: `ZStack { HStack { Rectangle... Text... } Circle... }`",
+                "Group na zewnątrz bez kontenerów układu: `Group { HStack { Rectangle... Text... } Circle... }`"
+            ],
+            "correct": [0],
+            "explanation": "Weryfikacja: Ponieważ cała struktura (górny blok poziomy oraz dolne kółko) ma być ułożona w pionie (jedno pod drugim), głównym kontenerem spinającym układ musi być VStack."
+        },
+        {
+            "question": "Wybierz poprawne stwierdzenia dotyczące separowalności modelu w architekturze MVVM:",
+            "options": [
+                "W częściowej separowalności możliwy jest bezpośredni dostęp do modelu z widoku",
+                "W całkowitej separowalności istnieje bezpośredni dostęp do modelu jedynie za pomocą viewmodel",
+                "Minimalna separowalność nie pozwala na stosowanie @State w widokach aplikacji",
+                "Wzorzec MVVM wymusza stosowanie frameworka Core Data do separacji modelu"
+            ],
+            "correct": [0, 1],
+            "explanation": "Weryfikacja: W ścisłym MVVM Widok komunikuje się tylko z ViewModelem (całkowita separacja). W podejściu lżejszym dopuszcza się przekazywanie prostych struktur Modelu bezpośrednio do Widoku. Opcja z @State jest fałszywa, bo stan UI można przechowywać w @State niezależnie od modelu."
+        }
       ];
       const totalQuestionsToAsk = 15;
 
